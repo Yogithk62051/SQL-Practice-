@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="E:/WSDA_Music.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="4026"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="Track" custom_title="0" dock_id="1" table="4,5:mainTrack"/><dock_state state="000000ff00000000fd0000000100000002000005f4000002aefc0100000001fb000000160064006f0063006b00420072006f00770073006500310100000000000005f40000012d00ffffff000005f40000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Album" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="56"/><column index="2" value="280"/><column index="3" value="53"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Artist" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="51"/><column index="2" value="179"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Customer" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="74"/><column index="2" value="78"/><column index="3" value="101"/><column index="4" value="300"/><column index="5" value="300"/><column index="6" value="156"/><column index="7" value="54"/><column index="8" value="117"/><column index="9" value="85"/><column index="10" value="156"/><column index="11" value="148"/><column index="12" value="234"/><column index="13" value="88"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Genre" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="54"/><column index="2" value="148"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Invoice" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort><column index="0" mode="0"/></sort><column_widths><column index="1" value="62"/><column index="2" value="76"/><column index="3" value="156"/><column index="4" value="300"/><column index="5" value="156"/><column index="6" value="72"/><column index="7" value="117"/><column index="8" value="105"/><column index="9" value="62"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="PlaylistTrack" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="63"/><column index="2" value="53"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Track" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="51"/><column index="2" value="195"/><column index="3" value="58"/><column index="4" value="83"/><column index="5" value="56"/><column index="6" value="241"/><column index="7" value="76"/><column index="8" value="85"/><column index="9" value="59"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="1.sql" filename="C:/sql files/1.sql">-- Reference to file &quot;C:/sql files/1.sql&quot; (not supported by this version) --</sql><sql name="SQL2" filename="D:/SQL Files/1.sql">-- Reference to file &quot;D:/SQL Files/1.sql&quot; (not supported by this version) --</sql><sql name="SQL 3">-- when company asks us to change title of FIRS LAST name and E mail as customer FIRSTNAME,Customer LAst name &amp; Customer EMAIl
+-- when company Asks us to cahnge title of First Nmae, last name, email as Customer First name , Customer Last Name , Customer Email
 --solution: using aliases &quot; AS &quot;
 SELECT
 FirstName AS'CUSTOMER',
@@ -502,115 +502,226 @@ Group BY
 BillingCountry,
 BillingCity
 ORDER By
-BillingCountry</sql><sql name="SQL 41">-- wsda company wants us to give Global Average in total sales ?
---SOLUTION &quot; using Nested query &quot;
-
-Select 
-avg(total)
-FROM
-Invoice
--- This 8.06 is Global Average ,
-
-</sql><sql name="SQL 42">--WSDA company wants us to give list of Average sales of all country , which are less than global Average 
--- SOLUTIOn &quot; Using NESTED QUERY 
-
-SELECT
-avg(total)
-FROM
-Invoice
--- Global Average is 8.06
-
-SELECT
-BillingCountry,
-total
-
-From Invoice
-WHERE total&lt;(SELECT
-avg(total)FROM Invoice)
-
-
-</sql><sql name="SQL 43">--Give the list of Total Country's in the customer table 
-
-SELECT
-Country
-
-FROM
-Customer
-GROUP by
-Country</sql><sql name="SQL 44">-- WSDA COMPANY Wants us to give Each cities Billing average As compared to Global Average and round off Average total 
--- SOLUTION 
-
-SELECT
-    BillingCity,
-   round (avg(Total),2) AS 'AverageTotal',
-	(Select round(avg(Total),2)
-	from Invoice) As 'Global Average'
-FROM
-    Invoice
-GROUP BY
-    BillingCity
-
-	
-</sql><sql name="SQL 45">--WSDA Company wants us to give All invoice's which have Occured After the date 2012-01-09?
-
--- SOLUTION
-
-SELECT
-InvoiceDate,
-BillingCountry
-
-FROM
-Invoice
-WHERE
-InvoiceDate&gt;
-(SELECT
-InvoiceDate
-FROM
-Invoice
-WHERE
-InvoiceId=251)</sql><sql name="SQL 46">-- WSDA Company wants us to give the Details of Billingcity, billing country, total  of Invoice id  215,252,254?
---Solution using Subing queries to return multiple row 
-
-SELECT
-BillingCountry,
-BillingCity,
-InvoiceDate,
-total
-FROM
-Invoice
-
-WHERE
-InvoiceDate in
-(SELECT
-InvoiceDate
-FROM
-Invoice
-WHERE
-InvoiceId in (251,252,254))
-
-/*Filter (WHERE InvoiceDate IN (...subquery...)):
-
-This filter ensures that only rows where the InvoiceDate matches any of the dates returned by the subquery are included in the result.*/</sql><sql name="SQL 47">-- WSDA Company wants us to give information about Tracks that are not selling ?
---SOLUTION using Distinct and Subqueries and NOT IN 
-
-SELECT
-TrackId,
-Composer,
-Name
-
-FROM
-Track
-WHERE
-TrackId
-NOT IN
-(SELECT
- DISTINCT
-TrackId
-From 
-InvoiceLine)
-
--- These are the tracks which are not selling 
-
-
-
+BillingCountry</sql><sql name="SQL 41">-- wsda company wants us to give Global Average in total sales ?
+
+--SOLUTION &quot; using Nested query &quot;
+
+
+
+Select 
+
+avg(total)
+
+FROM
+
+Invoice
+
+-- This 8.06 is Global Average ,
+
+
+
+</sql><sql name="SQL 42">--WSDA company wants us to give list of Average sales of all country , which are less than global Average 
+
+-- SOLUTIOn &quot; Using NESTED QUERY 
+
+
+
+SELECT
+
+avg(total)
+
+FROM
+
+Invoice
+
+-- Global Average is 8.06
+
+
+
+SELECT
+
+BillingCountry,
+
+total
+
+
+
+From Invoice
+
+WHERE total&lt;(SELECT
+
+avg(total)FROM Invoice)
+
+
+
+
+
+</sql><sql name="SQL 43">--Give the list of Total Country's in the customer table 
+
+
+
+SELECT
+
+Country
+
+
+
+FROM
+
+Customer
+
+GROUP by
+
+Country</sql><sql name="SQL 44">-- WSDA COMPANY Wants us to give Each cities Billing average As compared to Global Average and round off Average total 
+
+-- SOLUTION 
+
+
+
+SELECT
+
+    BillingCity,
+
+   round (avg(Total),2) AS 'AverageTotal',
+
+	(Select round(avg(Total),2)
+
+	from Invoice) As 'Global Average'
+
+FROM
+
+    Invoice
+
+GROUP BY
+
+    BillingCity
+
+
+
+	
+
+</sql><sql name="SQL 45">--WSDA Company wants us to give All invoice's which have Occured After the date 2012-01-09?
+
+
+
+-- SOLUTION
+
+
+
+SELECT
+
+InvoiceDate,
+
+BillingCountry
+
+
+
+FROM
+
+Invoice
+
+WHERE
+
+InvoiceDate&gt;
+
+(SELECT
+
+InvoiceDate
+
+FROM
+
+Invoice
+
+WHERE
+
+InvoiceId=251)</sql><sql name="SQL 46">-- WSDA Company wants us to give the Details of Billingcity, billing country, total  of Invoice id  215,252,254?
+
+--Solution using Subing queries to return multiple row 
+
+
+
+SELECT
+
+BillingCountry,
+
+BillingCity,
+
+InvoiceDate,
+
+total
+
+FROM
+
+Invoice
+
+
+
+WHERE
+
+InvoiceDate in
+
+(SELECT
+
+InvoiceDate
+
+FROM
+
+Invoice
+
+WHERE
+
+InvoiceId in (251,252,254))
+
+
+
+/*Filter (WHERE InvoiceDate IN (...subquery...)):
+
+
+
+This filter ensures that only rows where the InvoiceDate matches any of the dates returned by the subquery are included in the result.*/</sql><sql name="SQL 47">-- WSDA Company wants us to give information about Tracks that are not selling ?
+
+--SOLUTION using Distinct and Subqueries and NOT IN 
+
+
+
+SELECT
+
+TrackId,
+
+Composer,
+
+Name
+
+
+
+FROM
+
+Track
+
+WHERE
+
+TrackId
+
+NOT IN
+
+(SELECT
+
+ DISTINCT
+
+TrackId
+
+From 
+
+InvoiceLine)
+
+
+
+-- These are the tracks which are not selling 
+
+
+
+
+
+
+
 </sql><current_tab id="18"/></tab_sql></sqlb_project>
