@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="E:/WSDA_Music.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="4026"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="Track" custom_title="0" dock_id="1" table="4,5:mainTrack"/><dock_state state="000000ff00000000fd0000000100000002000005f4000002aefc0100000001fb000000160064006f0063006b00420072006f00770073006500310100000000000005f40000012d00ffffff000005f40000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Album" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="56"/><column index="2" value="280"/><column index="3" value="53"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Artist" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="51"/><column index="2" value="179"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Customer" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="74"/><column index="2" value="78"/><column index="3" value="101"/><column index="4" value="300"/><column index="5" value="300"/><column index="6" value="156"/><column index="7" value="54"/><column index="8" value="117"/><column index="9" value="85"/><column index="10" value="156"/><column index="11" value="148"/><column index="12" value="234"/><column index="13" value="88"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Genre" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="54"/><column index="2" value="148"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Invoice" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort><column index="0" mode="0"/></sort><column_widths><column index="1" value="62"/><column index="2" value="76"/><column index="3" value="156"/><column index="4" value="300"/><column index="5" value="156"/><column index="6" value="72"/><column index="7" value="117"/><column index="8" value="105"/><column index="9" value="62"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="PlaylistTrack" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="63"/><column index="2" value="53"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Track" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="51"/><column index="2" value="195"/><column index="3" value="58"/><column index="4" value="83"/><column index="5" value="56"/><column index="6" value="241"/><column index="7" value="76"/><column index="8" value="85"/><column index="9" value="59"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="1.sql" filename="C:/sql files/1.sql">-- Reference to file &quot;C:/sql files/1.sql&quot; (not supported by this version) --</sql><sql name="SQL2" filename="D:/SQL Files/1.sql">-- Reference to file &quot;D:/SQL Files/1.sql&quot; (not supported by this version) --</sql><sql name="SQL 3">-- when company asks us to change title of FIRS LAST name and E mail as customer FIRSTNAME,Customer LAst name &amp; Customer EMAIl
+--solution: using aliases &quot; AS &quot;
+SELECT
+FirstName AS'CUSTOMER',
+LastName AS'CUSTOMER LASTNAME',
+Email AS[CUSTOMER EMAIL]
+
+FROM
+Customer</sql><sql name="SQL 4">--when music company asked us to sort out first and last name in ascending order [i,e A to Z ] 
+--solution:using &quot; ASC &quot;
+
+SELECT
+FirstName,
+LastName,
+Email
+
+FROM
+Customer
+ORDER BY
+FirstName ASC,
+LastName ASC</sql><sql name="SQL 5">--when music company asked us to sort out first and last name in desending order [i,e Z to A ] 
+--solution:using &quot; DESC &quot;
+SELECT
+Firstname,Lastname,email
+
+FROM
+Customer
+
+ORDER BY
+FirstName DESC,
+LastName DESC</sql><sql name="SQL 7">--How many customers purchased 2 songs @ $0.99 each
+--Solution - including WHERE Clause and Comparison operator
+SELECT
+Invoiceid,
+invoiceDate,
+BillingAddress,
+total
+
+
+FROM
+Invoice
+WHERE
+total=1.98
+
+-- total 111 customers has purchased 2 songs @ 0.99 each
+
+
+
+
+</sql><sql name="SQL 8">--How many Invoices exist between $1.98 and $5.00
+--solution : using LOGICAL operator (BETWEEN , AND)
+
+SELECT
+InvoiceId,
+InvoiceDate,
+BillingAddress,
+ total
+
+FROM
+Invoice
+WHERE
+total BETWEEN 1.98 AND 5
+ORDER BY
+InvoiceDate
+
+-- total 178 invoice exist </sql><sql name="SQL 9">--How many Invoices exist Exactly @ 1.98 or $13.86
+--solution ; using LOGICAL Operator (IN) for exactly 
+SELECT
+InvoiceId,
+InvoiceDate,
+BillingAddress,
+ Total
+From 
+Invoice
+WHERE
+total IN(1.98,13.86)
+
+-- 160invoice exist which are purchased at rate of 1.98 &amp; 13.86</sql><sql name="SQL 10">--How many Invoices were billed for city Brussels,oralando,paris?
+--Solution
+SELECT
+InvoiceId,
+InvoiceDate,
+BillingCity,
+ total
+
+FROM
+Invoice
+WHERE
+BillingCity IN('Orlando','Brussels','Paris')
+
+--Text data which we are searching must be surrounded by quotes </sql><sql name="SQL 12">--How many Invoices were billed for city Brussel
+--Solution
+SELECT
+invoiceid,
+invoicedate,
+BillingCity,
+total
+
+From 
+Invoice
+WHERE
+BillingCity ='Brussels'</sql><sql name="SQL 13">--How many Invoices were Billed in Cities that starts with B ?
+--Solution : using &quot;LIKE &quot; and &quot;%&quot; operator
+--Like operator is used for Partial search 
+
+-- % means &quot;I dont care what comes next &quot; and it is also used As &quot; i dont care what comes before&quot;
+
+SELECT
+InvoiceId,
+InvoiceDate,
+BillingCity,
+ total
+
+FROM
+Invoice
+WHERE
+BillingCity LIKE 'B%'
+ORDER BY 
+InvoiceDate
+
+-- there are 62 invoices that were billed for cities that starts with B</sql><sql name="SQL 14">--How many invoices were billed in cities which have B anywhere in its name ? 
+--Solution : using &quot;LIKe&quot; and &quot;%&quot; 
+
+SELECT
+InvoiceId,
+InvoiceDate,
+BillingCountry,
+BillingCity
+ total
+
+
+FROM
+Invoice
+
+WHERE
+BillingCity LIKE'%B%'
+ORDER BY
+InvoiceDate
+
+-- there are 83 invoices which were billed in cities which has b anywhere in its name  </sql><sql name="SQL 15">-- GET all invoices that were  bilied after 2010-05-22 and have a total of less than $3.00 ?
+--solution : Using Comparison operator &quot;&gt;&quot; &quot;&lt;&quot; 
+--           here &quot;&gt;&quot; refers to After , usually &gt; refers to greater than  and &quot;&lt;&quot; refers to less than 
+
+SELECT
+InvoiceId,
+InvoiceDate,
+BillingCity,
+BillingCountry,
+total
+
+FROM
+Invoice
+WHERE
+InvoiceDate &gt;'2010-05-22' AND total &lt;'3.00'
+ORDER BY
+InvoiceDate</sql><sql name="SQL 16">--Get All invoices Billing city which starts with name P or D ?
+--solution : using Logical operator(OR) and LIKE
+SELECT
+InvoiceId,
+InvoiceDate,
+BillingCity,
+ total
+
+FROM
+invoice
+WHERE
+BillingCity Like'P%' OR BillingCity LIKE'D%' 
+Order BY
+InvoiceDate 
+
+-- we have 56 invooice whoes billing city starts with P or D</sql><sql name="SQL 17">-- Give all the Invoices that are greater than 1.98 from any cities whoes name starts with P or D ?
+--solution : 
+
+SELECT
+InvoiceId,
+InvoiceDate,
+BillingCity,
+BillingCountry,
+total
+
+FROM
+Invoice
+
+WHERE
+total&gt;1.98 AND BillingCity like'P%' OR BillingCity like'D%'
+
+/*here since even though we have given command that &quot;only those data that are greater than 1.98 
+ from any cities whoes name starts with P or D ? we have got 0.99 which is &lt; 1.98 so to clean this we use Parentheses in our command 
+ in WHERE clause. [ this is provided in next tab ]
+/*</sql><sql name="SQL 18">--using PEMDAS: Parentheses,exponents,multiplication,Division,addition,subtraction rule 
+
+SELECT
+InvoiceId,
+InvoiceDate,
+BillingCity,
+ total
+
+FROM
+Invoice
+
+WHERE
+Total &gt;1.98 AND(BillingCity LIKE'p%' OR BillingCity like'D%')
+
+--here since we have used Parentheses in commanding (BillingCity LIKE'p%' OR BillingCity like'D%') we get exact data for the question 
+
+-- we have 35 invoice for the aforesaid Question</sql><sql name="SQL 19">/*MSD Company asked us to Create new field Called &quot;Purchasetype&quot; and include TOP PERFORMER,BASELINE Purchase, LowPurchase,target Purchase based on Amount they have purchased?
+&lt; $2.00 = Baseline purchase
+BETWEEN $2.00 AND $6.99 ='Low Purchase'
+BETWEEN $7.00 AND $15.00 =Target Purchase'
+Above $15.00 = Top Performer 
+*/
+
+SELECT
+Invoiceid,
+InvoiceDate,
+BillingCountry,
+total,
+CASE
+WHEN total&lt;2.00 THEN'Baseline purchase'
+WHEN Total BETWEEN 2.00 AND 6.99 THEN'Low Purchase'
+WHEN total BETWEEN 7.00 AND 15.00 THEN'Target Purchase'
+ELSE 'TOP PERFORMER'
+END AS PURCHASETYPE
+
+From 
+Invoice
+
+</sql><sql name="SQL 20">--From the Previous querypane MSD company asked us to give them only TOP PERFORMER from Purchase type?
+--Solution
+SELECT
+InvoiceId,
+InvoiceDate
+billingcountry,
+total,
+CASE
+WHEN total &lt;2.00 THEN 'BASELINE'
+WHEN Total BETWEEN 2.00 AND 6.99 THEN'Low Purchase'
+WHEN total BETWEEN 7.00 AND 15.00 THEN'Target Purchase'
+ELSE 'TOPPERFORMER'
+END AS PURCHASETYPE
+
+FROM invoice
+WHERE
+PURCHASETYPE = 'TOPPERFORMER'
+
+</sql><sql name="SQL 21">/* WSDA Company is asking us to give full list of Customer First &amp; Last Name to be added next to all invoice's generated by that customer table ?
+here WSDA company is asking us to join 2 table i,e iNVOICE TABLE &amp; CUSTOMER TABLE */
+
+SELECT
+*
+
+FROM
+Invoice AS i
+INNER JOIN
+Customer AS C
+ON I.CustomerId = C.CustomerId
+ORDER BY
+c.CustomerId
+ </sql><sql name="SQL 22">-- AFTER Joining TWo TABLES WSDA Company Is Asking us to give onlu Customer Firstname,Lastname.inoiceid,Customerid ,Total ?
+
+--SOLUTION
+
+SELECT
+c.FirstName,
+c.LastName,
+i.InvoiceId,
+i.CustomerId,
+i.BillingCountry,
+i.total
+
+FROM 
+Invoice AS I 
+INNER JOIN
+Customer AS C 
+ON
+I.CustomerId = C.CustomerId
+ORDER BY 
+C.CustomerId
+</sql><sql name="SQL 23">-- WSDA Company has asked us to five TOP 10Employess Responsible for Highest sales ?
+-- SOLUTION 
+
+SELECT
+e.FirstName,
+e.Lastname,
+e.EmployeeId,
+c.FirstName AS 'Customer First name',
+c.LastName AS 'Customer last name',
+i.CustomerId,
+c.SupportRepId,
+i.total
+
+FROM
+Invoice AS i
+INNER JOIN
+Customer AS c
+ON
+i.CustomerId = c.CustomerId
+INNER JOIN
+Employee AS e
+ON
+c.SupportRepId = e.EmployeeId
+ORDER BY
+i.total DESC
+LIMIT 10
+</sql><sql name="SQL 24">-- How many customers Last namestarts with &quot;s&quot; ?
+-- SOLUTION 
+
+
+SELECT
+LastName
+
+FROM
+Customer
+WHERE
+LastName LIKE 'B%'</sql><sql name="SQL 25">-- WSDA Company asked us to Provide Customers names From USA &amp;  merge Customer FIRST and last name ?
+-- Solution using WHERE clause 
+
+SELECT
+FirstName,
+LastName,
+Country
+
+
+FROM
+Customer
+WHERE
+Country = 'USA'</sql><sql name="SQL 26">-- Since in the previous tab the First 7 last names of Customers were not merged , WSDA company asked us to merge the customer First &amp; Lastname of US Customers ?
+--Solution using : Concatenate ||
+SELECT
+FirstName || LastName
+
+
+FROM
+Customer
+WHERE
+Country = 'USA'</sql><sql name="SQL 27">-- since in the Last tab Customers first &amp; lastname were merged without Space ,WSDA company asked us to give space b/w fist &amp; Last name when it is merged ?
+-- Solution : Using Concatenate || ' '|| 
+
+SELECT
+FirstName || ' ' || LastName,
+Country
+
+FROM
+Customer
+WHERE
+Country = 'USA'</sql><sql name="SQL 28">/* WSDA company is Asking us to merge 
+1] FirstName,lastname with space in between them 
+2] and also to merge Address , State,zip code 
+all in one column and name that column as MAILING ADDRESS 
+while merging Address,stae,zipcode it has asked us to provide space and coma between them ?
+
+Solutionusing : Double Pipes and Comma between them 
+*/
+
+SELECT
+FirstName,
+LastName,
+FirstName||' '|| LastName ||', '||Address ||' , '||State||','||PostalCode As 'Mailing address',
+Country
+
+FROM
+Customer
+Where
+ Country = 'USA'
+</sql><sql name="SQL 29">/*WSDA Company wants us to provide actual postalcode present in database  and it requires only 5 digits PostalCode of USA and wants us to eliminate remaining postal code and provide
+ us the Column known as Postal code
+-- Solution */
+
+Select 
+PostalCode,
+country,
+substr(Postalcode, 1,5)As 'updated postal code'
+FROM
+Customer
+Where 
+country = 'USA'</sql><sql name="SQL 30">-- WSDa Company wants us to Provide length of first &amp; last name?
+
+SELECT
+FirstName,
+LastName,
+LENGTH(FirstName || LastName) AS NameLength,
+substr(FirstName,1,4)
+From 
+Customer</sql><sql name="SQL 31">-- WSDA company Wants us to Convert All the first name of Customers into Capital Letters and name the column as CAPITAL LEtters ?
+-- SOLUTION 
+
+SELECT
+FirstName,
+upper(Firstname)AS [CAPITAL LETTERS]
+
+FROM
+Customer</sql><sql name="SQL 32">/*Wsda company wants us 
+1] to give Both First name &amp; Last Name In Capital Letters By Merging Both Of them and givespace i b/w them ?
+2] then Give a Separte column known as small Letters and Convert the merged FirstName&amp; LastName to Small letters ?
+-- SOLUTION */
+
+
+SELECT
+UPPER(FirstName||' ' ||LastName),
+Lower(FirstName||' '||Lastname) AS[Small Letter]
+
+FROM
+Customer</sql><sql name="SQL 33">-- WSDA Company wants us to provide a column of Birthdate of employees and give us a cloumn known as &quot;AGe&quot; of employee in which current age of each Employee must have been Provided?
+
+SELECT
+BirthDate,
+strftime('%Y-%m-%d',Birthdate) AS 'Actual birthdate',
+strftime('%Y-%m-%d','now')-strftime('%Y-%m-%d',Birthdate) As AGE
+From 
+Employee
+
+/* here we can use ven &quot;substr&quot; function to delete 00:00:00, but if we use this we cannout subtract the output got from using &quot;substr&quot; function into current date to know the employees  Current Age 
+so we are using striftime function &quot;*/
+</sql><sql name="SQL 34">-- WSDa company asked us to provide Amount of total sales made by them?
+-- Solution USING SUM Aggregate function 
+
+SELECT
+Sum (Total) as' Total Sales'
+FROM
+Invoice</sql><sql name="SQL 35">/* WSDA Conpany wants to know 
+1] tOTAL SALES
+2] Average sales
+3] MAximum amount in the Total sale
+4] Minimum amount in the Total Sale 
+5] it wants us to Count how many Rows are there in the totals sales ?
+
+SOLUTION : Using Aggregate Function .
+*/
+
+SELECT
+Sum(total) AS [Total sales],
+avg(total) AS 'AverageSales',
+Max(total),
+Min(total),
+Count(total)
+
+
+FROM
+Invoice
+
+
+</sql><sql name="SQL 36">-- WSDa Company wants us to Round off Average column with only 2 digits ?
+
+-- SOLUTION
+
+SELECT
+AVg(total),
+round(Avg(total),2)
+FROM
+Invoice</sql><sql name="SQL 37">--WSDa company Wants to Known Average Amount Customer Spend in A City / Average invoice that every customer generate in a city 
+-- Solution : USINg &quot;Group By&quot; clause 
+SELECT
+BillingCity,
+round(avg(total),2)
+From 
+Invoice
+GROUP BY
+BillingCity</sql><sql name="SQL 38">-- WSDA Company wants us to give only the each Average of those Cities which starts with L ?
+-- Solution Using Where clause &amp; Group BY Clause .
+
+SELECT 
+BillingCity,
+round(Avg(total),2)
+
+From 
+Invoice
+WHERE
+BillingCity Like 'L%'
+GROUP BY
+BillingCity
+
+
+
+
+
+</sql><sql name="SQL 39">-- WSDA Company wants us to give Average invoice generated by each customer which are greayer than  dollars 
+-- solution : using GEOUP BY.Having,clause
+SELECT
+BillingCity,
+round(Avg(total),2)
+
+
+From 
+Invoice
+
+GROUP BY
+BillingCity
+HAVING
+avg(total)&gt;5
+
+
+--In WHERE Clause Aggregate Functions cannot be used it will give error if we use.so we use Having Clause </sql><sql name="SQL 40">-- WSDA Company wants us to give avg invoice that each customer Generate in each Country &amp; CITy ?
+-- Solution 
+SELECT
+BillingCountry,
+BillingCity,
+Avg(total)
+
+FROM
+Invoice
+Group BY
+BillingCountry,
+BillingCity
+ORDER By
+BillingCountry</sql><sql name="SQL 41">-- wsda company wants us to give Global Average in total sales ?
+--SOLUTION &quot; using Nested query &quot;
+
+Select 
+avg(total)
+FROM
+Invoice
+-- This 8.06 is Global Average ,
+
+</sql><sql name="SQL 42">--WSDA company wants us to give list of Average sales of all country , which are less than global Average 
+-- SOLUTIOn &quot; Using NESTED QUERY 
+
+SELECT
+avg(total)
+FROM
+Invoice
+-- Global Average is 8.06
+
+SELECT
+BillingCountry,
+total
+
+From Invoice
+WHERE total&lt;(SELECT
+avg(total)FROM Invoice)
+
+
+</sql><sql name="SQL 43">--Give the list of Total Country's in the customer table 
+
+SELECT
+Country
+
+FROM
+Customer
+GROUP by
+Country</sql><sql name="SQL 44">-- WSDA COMPANY Wants us to give Each cities Billing average As compared to Global Average and round off Average total 
+-- SOLUTION 
+
+SELECT
+    BillingCity,
+   round (avg(Total),2) AS 'AverageTotal',
+	(Select round(avg(Total),2)
+	from Invoice) As 'Global Average'
+FROM
+    Invoice
+GROUP BY
+    BillingCity
+
+	
+</sql><sql name="SQL 45">--WSDA Company wants us to give All invoice's which have Occured After the date 2012-01-09?
+
+-- SOLUTION
+
+SELECT
+InvoiceDate,
+BillingCountry
+
+FROM
+Invoice
+WHERE
+InvoiceDate&gt;
+(SELECT
+InvoiceDate
+FROM
+Invoice
+WHERE
+InvoiceId=251)</sql><sql name="SQL 46">-- WSDA Company wants us to give the Details of Billingcity, billing country, total  of Invoice id  215,252,254?
+--Solution using Subing queries to return multiple row 
+
+SELECT
+BillingCountry,
+BillingCity,
+InvoiceDate,
+total
+FROM
+Invoice
+
+WHERE
+InvoiceDate in
+(SELECT
+InvoiceDate
+FROM
+Invoice
+WHERE
+InvoiceId in (251,252,254))
+
+/*Filter (WHERE InvoiceDate IN (...subquery...)):
+
+This filter ensures that only rows where the InvoiceDate matches any of the dates returned by the subquery are included in the result.*/</sql><sql name="SQL 47">-- WSDA Company wants us to give information about Tracks that are not selling ?
+--SOLUTION using Distinct and Subqueries and NOT IN 
+
+SELECT
+TrackId,
+Composer,
+Name
+
+FROM
+Track
+WHERE
+TrackId
+NOT IN
+(SELECT
+ DISTINCT
+TrackId
+From 
+InvoiceLine)
+
+-- These are the tracks which are not selling 
+
+
+
+</sql><current_tab id="18"/></tab_sql></sqlb_project>
